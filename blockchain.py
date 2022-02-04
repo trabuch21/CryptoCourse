@@ -2,7 +2,7 @@
 
 
 import datetime
-import haslib
+import hashlib
 import json
 from flask import Flas, jsonify
 
@@ -31,7 +31,7 @@ class Blockchain:
         while check_proof is False:
             #miners problem. The more leading zeros the longer the problem
             hash_operation = hashlib.sha256(str(new_proof**2 - previous_proof**2).encode()).hexdigest()
-            if hash_operation[:4] == '0000'
+            if hash_operation[:4] == '0000' :
                 check_proof = True
             else: 
                 new_proof +=1
@@ -46,12 +46,17 @@ class Blockchain:
         block_index = 1
         while block_index < len(chain):
             block = chain[block_index]
-            if block['previos_hash'] != self.hash(previos_block):
+            if block['previous_hash'] != self.hash(previous_block):
                 return False
             else:
                 previous_proof = previous_block['proof']
                 proof = block['proof']
                 hash_operation = hashlib.sha256(str(proof**2 - previous_proof**2).encode()).hexdigest()
+                if hash_operation[:4] != '0000':
+                    return False
+                previous_block = block
+                block_index += 1
+            return True
         
 
 # Part 2 - Mining our Blockchain

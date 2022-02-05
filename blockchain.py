@@ -60,3 +60,14 @@ class Blockchain:
         
 
 # Part 2 - Mining our Blockchain
+
+
+
+# Creating a  Web App
+
+app = Flask(__name__)
+@app.route('/')
+
+
+
+# Creating a Blockchain
